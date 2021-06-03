@@ -24,12 +24,17 @@ date(printDate);
 
 
 const booksDb = [
-    { id: 1, title: 'Clean Code' },
-    { id: 2, title: 'The pragmantic programmer' },
-    { id: 3, title: 'Web Development with Node.js' },
+    { id: 1, title: 'Clean Code', authorId: 1 },
+    { id: 2, title: 'The pragmantic programmer', authorId: 2 },
+    { id: 3, title: 'Web Development with Node.js', authorId: 3 },
 ];
 
-function getBookId(id, callback) {
+const authorsDb = [
+    { id: 1, name: "Robert C. Martin" },
+    { id: 2, name: 'Steve Forest' }
+];
+
+function getBookById(id, callback) {
     const book = booksDb.find(book => book.id === id);
     if(!book) {
         const error = new Error('Book not found');
@@ -40,9 +45,29 @@ function getBookId(id, callback) {
     callback(null, book);
 }
 
-getBookId(4, (err, book) => {
+function getAuthorById(id, callback) {
+    const author = authorsDb.find(author => author.id === id);
+    if(!author) {
+        const error = new Error('Author not found');
+        error.message = 'Author not found';
+        return callback(error);
+    }
+
+    callback(null, author);
+}
+
+getBookById(1, (err, book) => {
     if (err) {
         return console.error(err.message);
     }
+
+    getAuthorById(book.authorId, (err, author) => {
+        if (err) {
+            return console.error(err.message);
+        }
+
+        console.log(`This book ${book.title} was written by ${author.name}`);
+    });
+
     return console.log(book);
 });
