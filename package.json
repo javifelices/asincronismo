@@ -4,7 +4,8 @@
     "description": "Trabajar con asincronismo, callback, promesas, async await en JavaScript",
     "main": "src/index.js",
     "scripts": {
-        "callback": "node src/callback/index.js"
+        "callback": "node src/callback/index.js",
+        "callback:challenge": "node src/callback/challenge.js"
     },
     "repository": {
         "type": "git",
@@ -22,5 +23,8 @@
     "bugs": {
         "url": "https://github.com/javifelices/asincronismo/issues"
     },
-    "homepage": "https://github.com/javifelices/asincronismo#readme"
+    "homepage": "https://github.com/javifelices/asincronismo#readme",
+    "devDependencies": {
+        "xmlhttprequest": "^1.8.0"
     }
+}
