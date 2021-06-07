@@ -71,3 +71,37 @@ getBookById(1, (err, book) => {
 
     return console.log(book);
 });
+
+
+function soyAsincrona(miCallback) {
+    setTimeout(() => {
+        console.log('Estoy siendo asíncrona');
+        miCallback();
+    }, 2000);
+}
+
+console.log('Inicianddo proceso...');
+soyAsincrona(() => {
+    console.log('Terminando proceso...');
+});
+
+function hola(nombre, miCallback) {
+    setTimeout(() => {
+        console.log(`Hola, ${nombre}`);
+        miCallback();
+    }, 2000);
+}
+
+function adios(nombre, otroCallback) {
+    setTimeout(() => {
+        console.log(`Adios, ${nombre}`);
+        otroCallback();
+    }, 2500);
+}
+
+console.log('Inicianddo proceso...');
+hola("Javi", function () {
+    adios("Javi", function () {
+        console.log('Terminando proceso...');
+    });
+});
